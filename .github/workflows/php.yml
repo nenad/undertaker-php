@@ -22,13 +22,27 @@ jobs:
       uses: actions/cache@v2
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.json') }}
         restore-keys: |
           ${{ runner.os }}-php-
+
+    - name: Cache Composer packages
+      id: composer-test-cache
+      uses: actions/cache@v2
+      with:
+        path: tests/fixture/vendor
+        key: ${{ runner.os }}-php-test-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-test-
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Install test dependencies
+      if: steps.composer-test-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
+      working-directory: tests/fixture
 
     - name: Run test suite
       run: ./vendor/bin/phpunit
