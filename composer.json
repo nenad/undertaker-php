@@ -1,0 +1,25 @@
+{
+    "name": "nenad/undertaker",
+    "description": "PHP counterpart for the undertaker project.",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nenad\\Undertaker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Nenad\\Undertaker\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nenad Stojanovikj",
+            "email": "me@nenad.dev"
+        }
+    ]
+}
