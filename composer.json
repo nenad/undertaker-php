@@ -1,5 +1,5 @@
 {
-    "name": "nenad/undertaker",
+    "name": "nenad.dev/undertaker",
     "description": "PHP counterpart for the undertaker project.",
     "type": "library",
     "require-dev": {
